@@ -1,0 +1,170 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
+@theme {
+  /* Colors */
+  --color-midnight: #0F1923;
+  --color-midnight-light: #1A2B3C;
+  --color-rose: #D95F7F;
+  --color-rose-light: #F2A4B8;
+  --color-rose-muted: #F7DCE3;
+  --color-off-white: #FAF8F6;
+  --color-slate: #4A5568;
+  --color-slate-light: #718096;
+  --color-border: #E8E0D8;
+  --color-success: #2D9B6F;
+  --color-warning: #E8A838;
+  --color-error: #D94F4F;
+
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+
+  /* Spacing */
+  --spacing-section: 6rem;
+  --spacing-section-mobile: 4rem;
+
+  /* Shadows */
+  --shadow-card: 0 2px 12px rgba(15, 25, 35, 0.06);
+  --shadow-card-hover: 0 16px 40px rgba(217, 95, 127, 0.15);
+  --shadow-rose: 0 8px 32px rgba(217, 95, 127, 0.2);
+  --shadow-rose-lg: 0 16px 48px rgba(217, 95, 127, 0.25);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Animation */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Global Base Styles ─────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-off-white);
+  color: var(--color-slate);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Typography Utilities ───────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-sans    { font-family: var(--font-sans); }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-midnight);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-off-white); }
+::-webkit-scrollbar-thumb { background: var(--color-rose-light); border-radius: 9999px; }
+
+/* ─── Focus Visible ──────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-rose);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Gradients ──────────────────────────────────────────────── */
+.gradient-hero {
+  background: linear-gradient(135deg, #0F1923 0%, #1A2B3C 60%, #2C1A23 100%);
+}
+
+.gradient-rose {
+  background: linear-gradient(135deg, #D95F7F 0%, #C04B68 100%);
+}
+
+/* ─── Noise overlay helper ───────────────────────────────────── */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Glassmorphism ──────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(15, 25, 35, 0.85);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Rose glow effect ───────────────────────────────────────── */
+.rose-glow {
+  box-shadow: 0 0 60px rgba(217, 95, 127, 0.25), 0 0 120px rgba(217, 95, 127, 0.1);
+}
+
+/* ─── Section padding ────────────────────────────────────────── */
+.section-padding {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+/* ─── Container ──────────────────────────────────────────────── */
+.container-safe {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ─── Animated connecting line for How It Works ──────────────── */
+@keyframes dash-flow {
+  to { stroke-dashoffset: -100; }
+}
+
+.dashed-line {
+  stroke-dasharray: 8 6;
+  animation: dash-flow 1.5s linear infinite;
+}
+
+/* ─── Number shimmer for trust bar ──────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ─── CTA particle dots ─────────────────────────────────────── */
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+  50%       { transform: translateY(-12px) scale(1.1); opacity: 0.6; }
+}
+
+.particle { animation: float-particle var(--duration, 3s) ease-in-out infinite; }
