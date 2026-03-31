@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, User, Menu, X, Shield } from 'lucide-react';
+import { ShoppingCart, User, Menu, X } from 'lucide-react';
 import { useAuth, UserButton } from '@clerk/react';
 import { useCartStore } from '../../stores/cartStore';
 import { cn } from '../../lib/utils';
@@ -9,7 +9,7 @@ import { cn } from '../../lib/utils';
 const navLinks = [
   { label: 'Home',     to: '/' },
   { label: 'Products', to: '/products' },
-  { label: 'About',    to: '/#about' },
+  { label: 'About',    to: '/about' },
   { label: 'Contact',  to: '/contact' },
 ];
 
@@ -29,22 +29,28 @@ export default function Navbar() {
 
   useEffect(() => { setMenuOpen(false); }, [location.pathname]);
 
+  // Force solid background on pages that are not the landing page
+  const isHeroPage = location.pathname === '/';
+  const isSolid = scrolled || !isHeroPage;
+
   return (
     <>
       <header
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          scrolled ? 'glass-dark shadow-sm' : 'bg-transparent'
+          isSolid ? 'glass-dark shadow-sm' : 'bg-transparent'
         )}
       >
         <nav className="container-safe flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2" aria-label="SheSafe Home">
-            <div className="w-8 h-8 rounded-full gradient-rose flex items-center justify-center shadow-rose">
-              <Shield size={16} className="text-white" strokeWidth={1.5} />
-            </div>
-            <span className="font-display text-xl font-semibold tracking-tight text-white">
+          <Link to="/" className="flex items-center gap-2.5" aria-label="SheSafe Home">
+            <img
+              src="/company-logo.png"
+              alt="SheSafe logo"
+              className="w-10 h-10 rounded-md object-cover border border-white/15"
+            />
+            <span className="font-display text-2xl font-semibold tracking-tight text-white mb-0.5">
               SheSafe
             </span>
           </Link>
@@ -96,7 +102,6 @@ export default function Navbar() {
                   </button>
                   {/* UserButton: Clerk's built-in avatar with profile + sign-out menu */}
                   <UserButton
-                    afterSignOutUrl="/"
                     appearance={{
                       elements: {
                         avatarBox: 'w-8 h-8 ring-2 ring-rose-400/50',
@@ -142,7 +147,14 @@ export default function Navbar() {
               style={{ background: 'var(--color-midnight)' }}
             >
               <div className="flex items-center justify-between px-6 h-16 border-b border-white/10">
-                <span className="font-display text-lg text-white font-semibold">SheSafe</span>
+                <Link to="/" className="flex items-center gap-2">
+                  <img
+                    src="/company-logo.png"
+                    alt="SheSafe logo"
+                    className="w-8 h-8 rounded-md object-cover border border-white/15"
+                  />
+                  <span className="font-display text-lg text-white font-semibold">SheSafe</span>
+                </Link>
                 <button onClick={() => setMenuOpen(false)} className="text-white/70 hover:text-white">
                   <X size={20} />
                 </button>
@@ -184,7 +196,7 @@ export default function Navbar() {
                       >
                         My Dashboard
                       </button>
-                      <UserButton afterSignOutUrl="/" />
+                      <UserButton />
                     </div>
                   ) : (
                     <Link

@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Shield } from 'lucide-react';
 import { SignIn, SignUp } from '@clerk/react';
-import { useNavigate } from 'react-router-dom';
 
 const pageVariants = {
   initial: { opacity: 0, y: 14 },
@@ -10,44 +9,44 @@ const pageVariants = {
   exit:    { opacity: 0, y: -8, transition: { duration: 0.25 } },
 };
 
-// Clerk appearance — make the modal blend with the dark SheSafe palette
+// Clerk appearance — matches the new SheSafe teal/pink dark palette
 const clerkAppearance = {
   variables: {
-    colorBackground:       'rgba(255,255,255,0.04)',
+    colorBackground:       'rgba(18,36,46,0.85)',
     colorInputBackground:  'rgba(255,255,255,0.06)',
-    colorInputText:        '#fff',
-    colorText:             'rgba(255,255,255,0.85)',
-    colorTextSecondary:    'rgba(255,255,255,0.45)',
-    colorPrimary:          '#D95F7F',
-    colorDanger:           '#f87171',
+    colorInputText:        '#f3e3ea',
+    colorText:             'rgba(243,227,234,0.90)',
+    colorTextSecondary:    'rgba(228,162,177,0.70)',
+    colorPrimary:          '#d04f99',
+    colorDanger:           '#f96f70',
     borderRadius:          '14px',
-    fontFamily:            'var(--font-sans)',
+    fontFamily:            'Poppins, system-ui, sans-serif',
   },
   elements: {
-    card:                  'bg-transparent shadow-none border-0 p-0',
+    card:                  'shadow-none border-0 p-0 bg-transparent',
     headerTitle:           'hidden',
     headerSubtitle:        'hidden',
     socialButtonsBlockButton:
-      'border border-white/10 bg-white/5 text-white hover:bg-white/10 transition-colors',
+      'border border-white/10 text-white hover:bg-white/10 transition-colors',
+    socialButtonsBlockButtonText: 'text-white/80',
     formButtonPrimary:
-      'gradient-rose text-white font-sans text-[13px] font-medium uppercase tracking-wider rounded-full shadow-rose hover:brightness-110 transition-all duration-200',
+      'gradient-rose text-white font-sans text-[13px] font-medium uppercase tracking-wider rounded-full shadow-rose hover:brightness-110 transition-all duration-200 border-0',
     formFieldInput:
-      'font-sans text-sm rounded-xl border border-white/10 bg-white/6 text-white placeholder:text-white/30 focus:border-rose-400/60 focus:outline-none',
+      'font-sans text-sm rounded-xl border border-white/10 bg-white/6 text-white placeholder:text-white/30 focus:border-pink-400/60 focus:outline-none',
     formFieldLabel:
       'font-sans text-[13px] text-white/60',
     footerActionLink:
-      'text-rose-400 hover:text-rose-300',
-    identityPreviewEditButtonIcon:
-      'text-white/60',
+      'text-pink-300 hover:text-pink-200',
     dividerLine:           'bg-white/10',
-    dividerText:           'text-white/30',
-    footer:                'hidden',  // hide "Secured by Clerk" footer
+    dividerText:           'text-white/30 font-sans text-[12px]',
+    footer:                'hidden',
+    identityPreview:       'border border-white/10 rounded-xl bg-white/5',
+    identityPreviewText:   'text-white/80',
   },
 };
 
 export default function LoginPage() {
   const [mode, setMode] = useState<'sign-in' | 'sign-up'>('sign-in');
-  const navigate = useNavigate();
 
   return (
     <motion.main
@@ -97,7 +96,7 @@ export default function LoginPage() {
               >
                 <SignIn
                   appearance={clerkAppearance}
-                  afterSignInUrl="/dashboard"
+                  fallbackRedirectUrl="/dashboard"
                   signUpUrl="/login"
                 />
               </motion.div>
@@ -108,7 +107,7 @@ export default function LoginPage() {
               >
                 <SignUp
                   appearance={clerkAppearance}
-                  afterSignUpUrl="/dashboard"
+                  fallbackRedirectUrl="/dashboard"
                   signInUrl="/login"
                 />
               </motion.div>

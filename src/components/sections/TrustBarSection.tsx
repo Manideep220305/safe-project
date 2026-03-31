@@ -37,7 +37,7 @@ export default function TrustBarSection() {
   return (
     <section
       className="py-14"
-      style={{ background: 'rgba(15,25,35,0.97)', borderTop: '1px solid rgba(255,255,255,0.05)' }}
+      style={{ background: 'rgba(18,36,46,0.97)', borderTop: '1px solid rgba(208,79,153,0.12)' }}
       aria-label="Trust statistics"
     >
       <div className="container-safe">

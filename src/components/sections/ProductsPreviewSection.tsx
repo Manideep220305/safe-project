@@ -64,11 +64,12 @@ export default function ProductsPreviewSection() {
               key={product.id}
               variants={cardVariants}
               whileHover={{ y: -6, transition: { type: 'spring', stiffness: 320, damping: 20 } }}
-              className="relative flex flex-col rounded-2xl bg-white p-7 transition-shadow duration-300"
+              className="relative flex flex-col rounded-2xl p-7 transition-shadow duration-300"
               style={{
+                background: '#fff8f4',
                 border: product.variant === 'advanced'
-                  ? '1.5px solid rgba(217,95,127,0.4)'
-                  : '1px solid var(--color-border)',
+                  ? '1.5px solid rgba(208,79,153,0.45)'
+                  : '1px solid rgba(208,79,153,0.15)',
                 boxShadow: product.variant === 'advanced'
                   ? 'var(--shadow-rose)'
                   : 'var(--shadow-card)',

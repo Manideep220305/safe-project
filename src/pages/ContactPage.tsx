@@ -43,7 +43,7 @@ export default function ContactPage() {
               SheSafe India
             </h2>
             {[
-              { Icon: MapPin, label: 'Address', value: 'Chennai, Tamil Nadu, India' },
+              { Icon: MapPin, label: 'Address', value: 'Hyderabad, Telangana, India' },
               { Icon: Phone,  label: 'Phone',   value: '+91 98765 43210' },
               { Icon: Mail,   label: 'Email',   value: 'hello@theshesafe.in' },
             ].map(({ Icon, label, value }) => (

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Shield, MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 // Brand icons — not in lucide-react, using minimal inline SVGs
 const XIcon = () => (
@@ -49,18 +49,20 @@ const socials = [
 export default function Footer() {
   return (
     <footer style={{ background: 'var(--color-midnight)' }} className="text-white/70">
-      <div className="container-safe pt-16 pb-8">
+      <div className="container-safe pt-24 lg:pt-32 pb-12">
 
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 lg:gap-16 pb-16 border-b border-white/10">
 
           {/* Brand */}
-          <div className="md:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full gradient-rose flex items-center justify-center">
-                <Shield size={15} className="text-white" strokeWidth={1.5} />
-              </div>
-              <span className="font-display text-xl text-white font-semibold">SheSafe</span>
+          <div className="md:col-span-2">
+            <Link to="/" className="flex items-center gap-2.5 mb-5">
+              <img
+                src="/company-logo.png"
+                alt="SheSafe logo"
+                className="w-10 h-10 rounded-md object-cover border border-white/15"
+              />
+              <span className="font-display text-2xl text-white font-semibold mb-0.5">SheSafe</span>
             </Link>
             <p className="font-sans text-[14px] text-white/50 leading-relaxed mb-6">
               Protection that works without your phone. Wearable safety for every woman, every day.
@@ -83,10 +85,10 @@ export default function Footer() {
           {/* Nav Links */}
           {Object.entries(footerLinks).map(([section, links]) => (
             <div key={section}>
-              <h4 className="font-sans text-[12px] font-medium uppercase tracking-widest text-white/40 mb-4">
+              <h4 className="font-sans text-[12px] font-medium uppercase tracking-widest text-white/40 mb-6">
                 {section}
               </h4>
-              <ul className="flex flex-col gap-2.5">
+              <ul className="flex flex-col gap-3.5">
                 {links.map((l) => (
                   <li key={l.label}>
                     <Link
@@ -103,13 +105,13 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-sans text-[12px] font-medium uppercase tracking-widest text-white/40 mb-4">
+            <h4 className="font-sans text-[12px] font-medium uppercase tracking-widest text-white/40 mb-6">
               Contact
             </h4>
-            <ul className="flex flex-col gap-3">
-              <li className="flex items-start gap-2.5 text-[14px] text-white/60">
-                <MapPin size={15} className="mt-0.5 shrink-0 text-rose-400" strokeWidth={1.5} />
-                <span>Chennai, Tamil Nadu, India</span>
+            <ul className="flex flex-col gap-4">
+              <li className="flex items-start gap-3 text-[14px] text-white/60">
+                <MapPin size={16} className="mt-0.5 shrink-0 text-rose-400" strokeWidth={1.5} />
+                <span className="leading-snug">Hyderabad, Telangana<br />India</span>
               </li>
               <li className="flex items-center gap-2.5 text-[14px] text-white/60">
                 <Phone size={15} className="shrink-0 text-rose-400" strokeWidth={1.5} />

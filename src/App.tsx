@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
+import Chatbot from './components/ui/Chatbot';
 
 // Pages
 import LandingPage       from './pages/LandingPage';
@@ -15,6 +16,7 @@ import LoginPage         from './pages/LoginPage';
 import CheckoutPage      from './pages/CheckoutPage';
 import DashboardPage     from './pages/DashboardPage';
 import AdminPage         from './pages/AdminPage';
+import AboutPage         from './pages/AboutPage';
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -39,6 +41,7 @@ export default function App() {
           <Route path="/cart"        element={<CartPage />} />
           <Route path="/login"       element={<LoginPage />} />
           <Route path="/contact"     element={<ContactPage />} />
+          <Route path="/about"       element={<AboutPage />} />
 
           {/* Protected routes — require Clerk sign-in */}
           <Route path="/checkout"  element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
@@ -47,6 +50,7 @@ export default function App() {
         </Routes>
       </AnimatePresence>
       {!hideLayout && <Footer />}
+      {!hideLayout && <Chatbot />}
     </>
   );
 }

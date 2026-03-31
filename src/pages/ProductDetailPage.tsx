@@ -24,10 +24,10 @@ export default function ProductDetailPage() {
     return (
       <motion.main variants={pageVariants} initial="initial" animate="animate" exit="exit"
         className="min-h-screen flex items-center justify-center pt-24"
-        style={{ background: 'var(--color-off-white)' }}
+        style={{ background: 'var(--color-midnight)' }}
       >
         <div className="text-center">
-          <h1 className="font-display text-3xl font-semibold mb-4" style={{ color: 'var(--color-midnight)' }}>
+          <h1 className="font-display text-3xl font-semibold mb-4" style={{ color: '#fff' }}>
             Product not found
           </h1>
           <button onClick={() => navigate('/products')} className="font-sans text-sm" style={{ color: 'var(--color-rose)' }}>
@@ -52,7 +52,7 @@ export default function ProductDetailPage() {
 
   return (
     <motion.main variants={pageVariants} initial="initial" animate="animate" exit="exit"
-      style={{ background: 'var(--color-off-white)', minHeight: '100vh', paddingTop: 100 }}
+      style={{ background: '#fff', minHeight: '100vh', paddingTop: 100 }}
     >
       <div className="container-safe py-12">
         <button
@@ -72,10 +72,10 @@ export default function ProductDetailPage() {
             className="rounded-2xl flex items-center justify-center sticky top-28"
             style={{
               background: product.variant === 'advanced'
-                ? 'linear-gradient(135deg, rgba(217,95,127,0.08), rgba(247,220,227,0.2))'
-                : 'rgba(15,25,35,0.05)',
+                ? 'linear-gradient(135deg, rgba(208,79,153,0.12), rgba(208,79,153,0.04))'
+                : 'linear-gradient(135deg, rgba(138,207,209,0.08), rgba(138,207,209,0.04))',
               height: 400,
-              border: '1px solid var(--color-border)',
+              border: '1.5px solid rgba(208,79,153,0.2)',
             }}
           >
             <svg width="160" height="210" viewBox="0 0 140 180" fill="none" aria-hidden="true">
@@ -108,7 +108,7 @@ export default function ProductDetailPage() {
               ₹{product.price.toLocaleString()}
             </p>
 
-            <p className="font-sans text-[15px] leading-relaxed mb-8" style={{ color: 'var(--color-slate)', fontWeight: 300 }}>
+            <p className="font-sans text-[15px] leading-relaxed mb-8" style={{ color: '#333', fontWeight: 400 }}>
               {product.description}
             </p>
 
